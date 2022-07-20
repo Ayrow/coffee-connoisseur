@@ -4,13 +4,14 @@ import Hero from '../public/static/hero-image.png';
 import Banner from '../components/banner';
 import styles from '../styles/Home.module.css';
 import Card from '../components/Card';
-
-import coffeeStoresData from '../data/coffee-stores.json';
+import { fetchCoffeeStores } from '../lib/coffee-stores';
 
 export async function getStaticProps(context) {
+  const coffeeStores = await fetchCoffeeStores();
+
   return {
     props: {
-      coffeeStores: coffeeStoresData,
+      coffeeStores,
     },
   };
 }
@@ -52,7 +53,10 @@ export default function Home(props) {
                     key={id}
                     className={styles.card}
                     name={name}
-                    imageUrl={imgUrl}
+                    imageUrl={
+                      imgUrl ||
+                      'https://images.unsplash.com/photo-1498804103079-a6351b050096?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2468&q=80'
+                    }
                     href={`/coffee-store/${id}`}
                   />
                 );
