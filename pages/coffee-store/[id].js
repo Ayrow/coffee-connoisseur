@@ -77,7 +77,6 @@ const CoffeeStore = (initialProps) => {
       });
 
       const dbCoffeeStore = await response.json();
-      console.log({ dbCoffeeStore });
     } catch (err) {
       console.error('Error creating coffee store', err);
     }
@@ -128,8 +127,7 @@ const CoffeeStore = (initialProps) => {
         });
 
         const dbCoffeeStore = await response.json();
-        console.log(dbCoffeeStore)
-        
+                
         if(dbCoffeeStore && dbCoffeeStore.length > 0) {
         let count = votingCount + 1;
         setVotingCount(count);

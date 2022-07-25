@@ -5,7 +5,6 @@ import {
 } from '../../lib/airtable';
 
 const createCoffeeStore = async (req, res) => {
-  console.log({ req });
   if (req.method === 'POST') {
     //find a record
 
@@ -45,7 +44,6 @@ const createCoffeeStore = async (req, res) => {
         res.json({ message: 'Id is missing' });
       }
     } catch (error) {
-      console.log(error, 'error creating or finding store');
       res.status(500);
       res.json({ message: 'error creating or finding store', error });
     }
