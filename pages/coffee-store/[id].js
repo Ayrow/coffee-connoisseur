@@ -42,7 +42,12 @@ export async function getStaticPaths() {
   };
 }
 
-const handleUpvoteButton = () => {};
+const [votingCount, setVotingCount] = useState(1);
+
+const handleUpvoteButton = () => {
+  let count = votingCount + 1;
+  setVotingCount(count);
+};
 
 const CoffeeStore = (initialProps) => {
   const router = useRouter();
@@ -94,7 +99,7 @@ const CoffeeStore = (initialProps) => {
         }
       }
     } else {
-      // SSG
+      // SS
       handleCreateCoffeeStore(initialProps.coffeeStore);
     }
   }, [id, initialProps, initialProps.coffeeStore]);
@@ -160,7 +165,7 @@ const CoffeeStore = (initialProps) => {
               height='24'
               alt='icon-3'
             />
-            <p className={styles.text}>1</p>
+            <p className={styles.text}> {votingCount} </p>
           </div>
 
           <button className={styles.upvoteButton} onClick={handleUpvoteButton}>
